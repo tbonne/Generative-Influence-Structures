@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xml:base="http://marketplace.eclipse.org/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eclipse Plugins, Bundles and Products - Eclipse Marketplace</title>
+    <link>http://marketplace.eclipse.org/</link>
+    <description></description>
+    <language>en</language>
+     <atom:link href="http://marketplace.eclipse.org/rss.xml" rel="self" type="application/rss+xml" />
+      <item>
+    <title>EMFStore Model Repository</title>
+    <link>http://marketplace.eclipse.org/content/emfstore-model-repository</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/emfstore-marketplace_0.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Tue, 2010-04-20 09:45&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 13:39&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22EclipseSource%22&quot;&gt;EclipseSource&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/helmingintumde/listings&quot; title=&quot;helming&quot;&gt;helming&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;EMFStore is a model repository for the Eclipse Modeling Framework (EMF) and features collaborative editing and versioning of models. Existing versioning systems such as git or SVN are focused on textual artifacts and do not work well for models. EMFStore is specifically designed for models and allows semantic versioning of models. As a result, it supports merging and conflict detection more effectively. EMFStore can be used for EMF Model instances and can be integrated into any kind of existing application too.&lt;/p&gt;
+&lt;!--break--&gt;&lt;p&gt;Feature Overview:&lt;br /&gt;
+- Collaboration on models&lt;br /&gt;
+- Conflict Detection and Interactive Merging&lt;br /&gt;
+- Model Versioning with fine-grained History&lt;br /&gt;
+- Branching&lt;br /&gt;
+- Extensible and reusable Default UI&lt;br /&gt;
+- Access Control&lt;br /&gt;
+- Model Migration Support&lt;/p&gt;
+&lt;!--break--&gt;&lt;p&gt;A detailed feature description and documentation is available at &lt;a href=&quot;http://eclipse.org/emfstore&quot;&gt;our website&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Tue, 20 Apr 2010 13:45:15 +0000</pubDate>
+ <dc:creator>a</dc:creator>
+ <guid isPermaLink="false">1184 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/emfstore-model-repository#comments</comments>
+  </item>
+  <item>
+    <title>EMF Forms</title>
+    <link>http://marketplace.eclipse.org/content/emf-forms</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/logo_31.png&quot; width=&quot;107&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2014-06-26 04:28&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 13:14&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22EclipseSource%22&quot;&gt;EclipseSource&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/jfaltermeier/listings&quot; title=&quot;Johannes Faltermeier&quot;&gt;Johannes Faltermeier&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;EMF Forms provides a new way of developing form-based UIs. Instead of manually coding form-based layouts, it allows you to describe the UI with a simple model instead of with code. The approach allows you to more efficiently produce and iteratively refine form-based UIs that conform to a uniform look and feel. EMF Forms also lowers the technical entry barrier to creating form-based UIs. The UI description is interpreted by a rendering engine and allows you to switch between the UI technology stack to Swing, SWT, JavaFX or Web just by replacing the renderer. &lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Thu, 26 Jun 2014 08:28:55 +0000</pubDate>
+ <dc:creator>jfaltermeier</dc:creator>
+ <guid isPermaLink="false">1767590 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/emf-forms#comments</comments>
+  </item>
+  <item>
+    <title>Eclipse Tools for Cloud Foundry</title>
+    <link>http://marketplace.eclipse.org/content/eclipse-tools-cloud-foundry</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/VMW-LGO-CloudFoundry-217-square100x100_0.png&quot; width=&quot;100&quot; height=&quot;73&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2011-08-17 16:58&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 12:58&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Pivotal%2C%20IBM%22&quot;&gt;Pivotal, IBM&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/nsingh/listings&quot; title=&quot;Nieraj Singh&quot;&gt;Nieraj Singh&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;This listing installs support into Eclipse for Pivotal Cloud Foundry, the industry’s first open platform as a service. A Java 7 Execution Environment is required. Run your Spring, Java, and Grails applications. Spring deployment to Cloud Foundry now also includes Spring Boot. Deploy from your IDE or command line.&lt;/p&gt;
+&lt;p&gt;Introducing Cloud Foundry&lt;/p&gt;
+&lt;p&gt;Cloud Foundry is the open platform as a service project by Pivotal. It can support multiple frameworks, multiple cloud providers, and multiple application services all on a cloud scale platform.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Developer Productivity — Build applications with your choice of high productivity frameworks and application services.&lt;/li&gt;
+&lt;li&gt;Open System — Choose your framework, choose your cloud, choose your application services.&lt;/li&gt;
+&lt;li&gt;Faster Delivery — Shorten the time it takes to take your application from concept, to code, to the cloud using an open platform as a service.&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Wed, 17 Aug 2011 20:58:07 +0000</pubDate>
+ <dc:creator>nsingh</dc:creator>
+ <guid isPermaLink="false">106257 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/eclipse-tools-cloud-foundry#comments</comments>
+  </item>
+  <item>
+    <title>EMF Client Platform</title>
+    <link>http://marketplace.eclipse.org/content/emf-client-platform</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/emf_cp_schrift_regular_1.png&quot; width=&quot;109&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2012-04-27 13:25&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 12:54&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22EclipseSource%22&quot;&gt;EclipseSource&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/jonas/listings&quot; title=&quot;Jonas Helming&quot;&gt;Jonas Helming&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;The EMF Client Platform is a framework for building EMF-based client applications. The goal is to provide a one-click application based on a given EMF model. No additional components have to be developed or generated beyond the EMF model, therefore, ECP provides a standard solution offering the most common features needed for EMF-based client applications. In particular, these features are:&lt;br /&gt;
+A navigator showing the hierarchy of a model instance that allows browsing of models, DnD and creation of new instances.&lt;br /&gt;
+An editor that shows all attributes and references of a particular model element and allows  modifications to the element.&lt;br /&gt;
+A couple of modal dialogs, e.g., those allowing the selection of and search for model elements.&lt;br /&gt;
+A transparent workspace interface that allows different persistency layers (e.g., EMFStore or CDO)&lt;br /&gt;
+The UI provided by the EMF Client Platform can then be customized step by step. This can be done by extending ECP or by replacing single components completely.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Fri, 27 Apr 2012 17:25:54 +0000</pubDate>
+ <dc:creator>jonas</dc:creator>
+ <guid isPermaLink="false">257404 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/emf-client-platform#comments</comments>
+  </item>
+  <item>
+    <title>PDE Source Lookup</title>
+    <link>http://marketplace.eclipse.org/content/pde-source-lookup</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/default_images/default_2.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-04-20 14:56&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 11:41&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Red%20Hat%22&quot;&gt;Red Hat&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/fbricon/listings&quot; title=&quot;Fred Bricon&quot;&gt;Fred Bricon&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;Proof of Concept to automatically fetch missing source bundles from enabled p2 repositories, when opening a bundle jar (similar to m2e). It&#039;s also possible to fetch all sources from the Plug-in Dependencies classpath container, with a right-click and selecting Download Bundle Sources.&lt;/p&gt;
+&lt;p&gt;Sources are cached to ~/.eclipse/org.jboss.tools.pde.sourcelookup.core/sources. That folder can be changed in Preferences &amp;gt; Plug-in Development &amp;gt; Source Lookup.&lt;/p&gt;
+&lt;p&gt;Because the Plug-in Dependencies classpath container doesn’t keep new attached sources on workspace restart, the PDE Source Lookup plugin automatically reattaches thoses sources upon restart. This behavior can be disabled in Preferences &amp;gt; Plug-in Development &amp;gt; Source Lookup.&lt;/p&gt;
+&lt;p&gt;Requires an Eclipse Mars.2 or Neon installation (might work on older versions)&lt;br /&gt;
+Requires Java 8 to run.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Wed, 20 Apr 2016 18:56:13 +0000</pubDate>
+ <dc:creator>fbricon</dc:creator>
+ <guid isPermaLink="false">2844330 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/pde-source-lookup#comments</comments>
+  </item>
+  <item>
+    <title>Ctrlflow Code Search for Java (30 Days Free)</title>
+    <link>http://marketplace.eclipse.org/content/ctrlflow-code-search-java-30-days-free</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/ctrlflow-logo_1.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Fri, 2013-08-09 14:38&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 11:17&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Codetrails%20GmbH%22&quot;&gt;Codetrails GmbH&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/cteamrav/listings&quot; title=&quot;Codetrails Team&quot;&gt;Codetrails Team&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;h2 style=&quot;font-size:3em;&quot;&gt;Code Search. Redefined.&lt;/h2&gt;
+&lt;p&gt;Searching for and analyzing code snippets is tiresome and takes up more than half of a Java developer’s time. But with &lt;em&gt;Ctrlflow Code Search Professional&lt;/em&gt;, that’s all history.&lt;/p&gt;
+&lt;h2&gt;Find code snippets. Lightning fast and always a step ahead.&lt;/h2&gt;
+&lt;p&gt;Ctrlflow provides fast and powerful code search for Java developers. Whether you need snippets for method arguments or references to methods, or you’re looking for particular strings in the code, Ctrlflow returns results in milliseconds.&lt;/p&gt;
+&lt;p&gt;&lt;img class=&quot;img-responsive&quot; style=&quot;max-width: 600px;&quot; src=&quot;https://marketplace.eclipse.org/sites/default/files/ctrlflow-code-search-context-sensitive.png&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;All the search results at a glance. Starting with the ones that matter most.&lt;/h2&gt;
+&lt;p&gt;Ctrlflow displays even large quantities of results in a clear and easily understandable way. Frequently-used code snippets are easy to spot thanks to the many aggregation options. And the powerful filter and sorting functions enable you to sort the results not just by project, package or class but also according to the frequency and usage of the expressions.&lt;/p&gt;
+&lt;p&gt;&lt;img class=&quot;img-responsive&quot; style=&quot;max-width: 600px;&quot; src=&quot;https://marketplace.eclipse.org/sites/default/files/ctrlflow-code-search-clustered-results.png&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;Code search directly in Eclipse. And far beyond.&lt;/h2&gt;
+&lt;p&gt;Ctrlflow analyzes and indexes the codebase of your whole development environment. But that’s not all. You can also include thousands of code snippets for popular libraries in your search. Ctrlflow finds them with breathtaking speed as well. &lt;/p&gt;
+&lt;p&gt;&lt;img class=&quot;img-responsive&quot; style=&quot;max-width: 600px;&quot; src=&quot;https://marketplace.eclipse.org/sites/default/files/ctrlflow-code-search-popular-frameworks.png&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;More Feature Highlights&lt;/h2&gt;
+&lt;ul style=&quot;line-height: 1.2em&quot;&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Search for declarations, expressions &amp;amp; strings&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Search for method arguments&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Search for variable initializations&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Automatic code indexing in the background&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Filter and sorting functions&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Clustering of structurally-similar search results&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Integrated source code preview and syntax highlighting&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;One-click search  (linked mode, search-as-you-type)&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;Examples database for popular libraries like Eclipse, Apache and more&lt;br /&gt;&lt;/li&gt;&lt;li style=&quot;padding: .2em&quot;&gt;&lt;a href=&quot;https://ctrlflow.com/manuals/codesearch/misc/changelog.html&quot;&gt;(Full changelog)&lt;/a&gt;
+&lt;/li&gt;&lt;/ul&gt;&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;center&gt;&lt;br /&gt;&lt;a class=&quot;btn btn-info btn-lg&quot; style=&quot;background-color:#adc914; border-color:#adc914; color=#fff;&quot; href=&quot;https://www.ctrlflow.com/code-search-professional/&quot;&gt;Read more&lt;/a&gt;   &lt;a class=&quot;btn btn-info btn-lg&quot; style=&quot;background-color:#adc914; border-color:#adc914; color=#fff;&quot; href=&quot;https://www.ctrlflow.com/trial/signup/&quot;&gt;Try it free&lt;/a&gt;&lt;br /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;img src=&quot;https://download.codetrails.com/marketplace-footer.png&quot; /&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Fri, 09 Aug 2013 18:38:51 +0000</pubDate>
+ <dc:creator>cteamrav</dc:creator>
+ <guid isPermaLink="false">1082014 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/ctrlflow-code-search-java-30-days-free#comments</comments>
+  </item>
+  <item>
+    <title>UML Lab Class Diagram Editor</title>
+    <link>http://marketplace.eclipse.org/content/uml-lab-class-diagram-editor</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/UML%20Lab%20Screenshot%20Shop_1.png&quot; width=&quot;110&quot; height=&quot;69&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Mon, 2012-10-15 10:21&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 11:05&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Yatta%20Solutions%20GmbH%22&quot;&gt;Yatta Solutions GmbH&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/jjacop/listings&quot; title=&quot;Johannes Jacop&quot;&gt;Johannes Jacop&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;h2&gt;UML Class Diagram Editor for Eclipse&lt;/h2&gt;
+&lt;p&gt;
+&lt;br /&gt;
+With &lt;a href=&quot;http://www.uml-lab.com/services-for-eclipse/&quot; target=&quot;_blank&quot;&gt;UML Lab Class Diagrams for Eclipse&lt;/a&gt; we provide a light-weight but highly professional software tool for creating and editing UML class and package diagrams with your Eclipse IDE.
+&lt;/p&gt;
+
+&lt;div style=&quot;margin-left:auto; margin-right:auto; text-align:center&quot;&gt; &lt;img src=&quot;http://www.yatta.de/fileadmin/images/eclipse_marketplace/UML_Lab_Screenshot_Shop.png&quot; border=&quot;0&quot; /&gt;&lt;/div&gt;
+
+&lt;h3&gt;UML Lab Class Diagram Editor Features&lt;/h3&gt;
+&lt;ul&gt;&lt;li&gt;UML 2.5 class and package diagram editor&lt;/li&gt;
+&lt;li&gt;Model validation (OCL)&lt;/li&gt;
+&lt;li&gt;Navigation and model exploration&lt;/li&gt;
+&lt;li&gt;Task-focussed modeling with Mylyn&lt;/li&gt;
+&lt;li&gt;XMI import/export (Rational Software Architect, TopCASED, Eclipse UML2)&lt;/li&gt;
+&lt;li&gt;Diagram export (svg, png, jpg, bmp)&lt;/li&gt;
+&lt;/ul&gt;
+Take a look at &lt;a href=&quot;http://www.uml-lab.com/&quot; target=&quot;_blank&quot;&gt;UML Lab&lt;/a&gt; for our full-featured agile modeling solution.
+
+&lt;h3&gt;How does the »UML Lab Class Diagram Editor for Eclipse« work?&lt;/h3&gt;
+&lt;p&gt;
+Install &lt;a href=&quot;http://www.uml-lab.com/&quot; target=&quot;_blank&quot;&gt;UML Lab&lt;/a&gt; (the full edition or just the class diagram editor) into your Eclipse IDE and use the editor for a month at a time whenever you need. After your usage period expires, the editor functions are disabled again.
+&lt;/p&gt;
+&lt;p&gt;
+In our experience, developers utilize their Eclipse IDE in very different ways. Depending on project, task and personal preference, they make use of a wide variety of functions, tools and frameworks. Good developers know the right tools for the job at hand. With UML Lab Services, we now offer you exactly the functions you need for your analysis, design and implementation tasks exactly when you need them - true to our values »agile, simple and efficient.«
+&lt;/p&gt;
+&lt;p&gt;
+Our vision is for Eclipse users to no longer buy tools in bulk, but to use specific functions in their Eclipse IDE flexibly and on demand. You only pay what you need. Our &lt;a href=&quot;http://www.uml-lab.com/services-for-eclipse/&quot; target=&quot;_blank&quot;&gt;UML Lab Class Diagram Service for Eclipse&lt;/a&gt; is a first step in that direction.
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://marketplace.yatta.de/profiles/Pphz&quot; target=&quot;umllab&quot;&gt;&lt;img src=&quot;http://www.uml-lab.com/fileadmin/images/eclipse_marketplace/download.png&quot; border=&quot;0&quot; alt=&quot;DOWNLOAD NOW&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;h3&gt;More information about »UML Lab Services for Eclipse«&lt;/h3&gt;
+&lt;p&gt;
+Monthly licenses are available from EUR 19 including support and updates; &lt;a href=&quot;http://www.uml-lab.com/academic/&quot; target=&quot;_blank&quot;&gt;Academic Licenses&lt;/a&gt; are free.
+&lt;/p&gt;
+&lt;p&gt;
+Visit our &lt;a href=&quot;http://www.uml-lab.com/services-for-eclipse/&quot; target=&quot;_blank&quot;&gt;website&lt;/a&gt; for more information. Follow the latest Yatta News on &lt;a href=&quot;http://twitter.com/YattaSolutions/&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;, &lt;a href=&quot;http://facebook.com/YattaSolutions/&quot; target=&quot;_blank&quot;&gt;Facebook&lt;/a&gt; and on &lt;a href=&quot;http://gplus.yatta.de&quot; target=&quot;_blank&quot;&gt;Google+&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;h3&gt;Send us feedback!&lt;/h3&gt;
+&lt;p&gt;
+We are interested in your feedback and suggestions regarding our &lt;a href=&quot;http://www.uml-lab.com/services-for-eclipse/&quot; target=&quot;_blank&quot;&gt;UML Lab Services&lt;/a&gt; – or Eclipse in general – good or bad alike: Just &lt;a href=&quot;http://www.yatta.de/kontakt/&quot; target=&quot;_blank&quot;&gt;contact us&lt;/a&gt; or post your question in our &lt;a href=&quot;http://www.forum.yatta.de/&quot; target=&quot;_blank&quot;&gt;forum&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+As Eclipse Solution Member, we strive to create custom-made software tools that match your needs and compel with efficiency, quality and creativity.
+&lt;/p&gt;
+
+&lt;img height=&quot;1&quot; width=&quot;1&quot; style=&quot;border-style:none;&quot; alt=&quot;&quot; src=&quot;http://www.googleadservices.com/pagead/conversion/1032827109/?label=bomzCL3ymgIQ5eG-7AM&amp;amp;guid=ON&amp;amp;script=0&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Mon, 15 Oct 2012 14:21:57 +0000</pubDate>
+ <dc:creator>jjacop</dc:creator>
+ <guid isPermaLink="false">473457 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/uml-lab-class-diagram-editor#comments</comments>
+  </item>
+  <item>
+    <title>UML Lab Modeling IDE</title>
+    <link>http://marketplace.eclipse.org/content/uml-lab-modeling-ide</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/Eclipse%20Marketplace%20Listing%20-%20Round-Trip-Engineering%20%282%29%20110x80.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2010-11-11 09:06&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 11:05&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22Yatta%20Solutions%20GmbH%22&quot;&gt;Yatta Solutions GmbH&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/lgeiger/listings&quot; title=&quot;Leif Geiger&quot;&gt;Leif Geiger&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;h2&gt;UML Lab Modeling IDE&lt;/h2&gt;
+&lt;p&gt;
+&lt;br /&gt;&lt;a href=&quot;http://www.uml-lab.com/uml-lab/eclipse/&quot; target=&quot;umllab&quot;&gt;UML Lab&lt;/a&gt; is the first Modeling IDE to seamlessly combine modeling and programming with an intuitive UML diagram editor and &lt;a href=&quot;http://www.uml-lab.com/uml-lab/features/roundtrip/&quot; target=&quot;umllab&quot;&gt;next-gen round-trip engineering&lt;/a&gt;. Import your software project and get a nice overview via UML within seconds. Experience truly agile modeling and coding within your Eclipse IDE.
+&lt;/p&gt;
+&lt;a href=&quot;http://www.uml-lab.com/en/uml-lab/videos/round-trip-engineering-ng-video/&quot; target=&quot;UML Lab Gallery&quot;&gt;&lt;img src=&quot;http://www.yatta.de/fileadmin/images/eclipse_marketplace/Round-Trip-Engineering_NG_embedded_in_Eclipse.png&quot; border=&quot;0&quot; alt=&quot;UML Lab in Action Video&quot; /&gt;&lt;/a&gt;
+
+&lt;p&gt;
+In short, &lt;a href=&quot;http://www.uml-lab.com/uml-lab/eclipse/&quot; target=&quot;umllab&quot;&gt;UML Lab&lt;/a&gt; helps you develop great software.
+&lt;/p&gt;
+
+&lt;h3&gt;UML Lab Features for Eclipse Modeling&lt;/h3&gt;
+&lt;ul&gt;&lt;li&gt;Template-based Reverse- and Round-Trip-Engineering NG&lt;/li&gt;
+&lt;li&gt;UML 2.5 class diagram editor with Xpand/Xtend integration&lt;/li&gt;
+&lt;li&gt;Java templates with best practices and patterns included (POJO, JPA, JEE)&lt;/li&gt;
+&lt;li&gt;Java 8 ready&lt;/li&gt;
+&lt;li&gt;PHP templates including MySQL, Zend Framework and CakePHP support&lt;/li&gt;
+&lt;li&gt;Model-based code validation (OCL)&lt;/li&gt;
+&lt;li&gt;Navigation and model exploration&lt;/li&gt;
+&lt;li&gt;Quick overview for any Mylyn task with Context Class Diagrams&lt;/li&gt;
+&lt;li&gt;Task-focussed modeling with Mylyn and round-trip context synchronization&lt;/li&gt;
+&lt;li&gt;XMI import/export (Rational Software Architect, TopCASED, Eclipse UML2)&lt;/li&gt;
+&lt;li&gt;Diagram export (svg, png, jpg, bmp)&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;Get UML Lab&lt;/h3&gt;
+&lt;p&gt;
+Visit our &lt;a href=&quot;http://www.uml-lab.com/uml-lab/eclipse/&quot; target=&quot;umllab&quot;&gt;website&lt;/a&gt; for more information, pricing and to download a &lt;a href=&quot;http://www.uml-lab.com/download/&quot; target=&quot;umllab&quot;&gt;FREE 30-Day Trial&lt;/a&gt; of UML Lab. Annual licenses are available from EUR 199 including support and updates; &lt;a href=&quot;http://www.uml-lab.com/academic/&quot; target=&quot;umllab&quot;&gt;Academic Licenses&lt;/a&gt; are free.
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://marketplace.yatta.de/profiles/kbut&quot; target=&quot;umllab&quot;&gt;&lt;img src=&quot;http://www.uml-lab.com/fileadmin/images/eclipse_marketplace/download.png&quot; border=&quot;0&quot; alt=&quot;DOWNLOAD NOW&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;h3&gt;Contact us&lt;/h3&gt;
+&lt;p&gt;
+Missing some information? Post your question in our &lt;a href=&quot;http://www.forum.yatta.de/&quot; target=&quot;umllab&quot;&gt;forum&lt;/a&gt; or &lt;a href=&quot;http://www.yatta.de/kontakt/&quot; target=&quot;umllab&quot;&gt;contact us&lt;/a&gt; and follow the latest Yatta News on &lt;a href=&quot;http://twitter.com/YattaSolutions/&quot; target=&quot;umllab&quot;&gt;Twitter&lt;/a&gt; (e.g. UMLlab ) and &lt;a href=&quot;http://facebook.com/YattaSolutions/&quot; target=&quot;umllab&quot;&gt;Facebook&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Please note: Some SWT compatibility issues with Eclipse 4.x under Mac OS X. We are working on a solution. For the time being, we suggest using UML Lab in Mac OS X only with Eclipse 3.x. Thank you for your understanding.
+&lt;/p&gt;
+
+&lt;img height=&quot;1&quot; width=&quot;1&quot; style=&quot;border-style:none;&quot; alt=&quot;&quot; src=&quot;http://www.googleadservices.com/pagead/conversion/1032827109/?label=bomzCL3ymgIQ5eG-7AM&amp;amp;guid=ON&amp;amp;script=0&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Thu, 11 Nov 2010 14:06:52 +0000</pubDate>
+ <dc:creator>lgeiger</dc:creator>
+ <guid isPermaLink="false">19495 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/uml-lab-modeling-ide#comments</comments>
+  </item>
+  <item>
+    <title>SonarLint</title>
+    <link>http://marketplace.eclipse.org/content/sonarlint</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/sonarlint-110x80_0.png&quot; width=&quot;110&quot; height=&quot;80&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2015-10-15 14:54&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 09:45&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22SonarSource%20S.A%22&quot;&gt;SonarSource S.A&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/jhenrym6y/listings&quot; title=&quot;Julien HENRY&quot;&gt;Julien HENRY&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;SonarLint is an Eclipse plugin that provides on-the-fly feedback to developers on new bugs and quality issues injected into Java, JavaScript and PHP code.&lt;/p&gt;
+&lt;p&gt;If your project is analysed on SonarQube (formerly known as &quot;Sonar&quot;), SonarLint can connect to the server to retrieve the appropriate quality profiles and settings for that project.&lt;/p&gt;
+&lt;p&gt;Documentation: &lt;a href=&quot;http://eclipse.sonarlint.org/&quot;&gt;http://eclipse.sonarlint.org/&lt;/a&gt;&lt;br /&gt;
+For any question or feedback please join the &lt;a href=&quot;https://groups.google.com/forum/#!forum/sonarlint&quot;&gt;SonarLint User group&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Running Eclipse Kepler SR1+ with a JDK 8+ is required since version 2.2.0.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Thu, 15 Oct 2015 18:54:47 +0000</pubDate>
+ <dc:creator>jhenrym6y</dc:creator>
+ <guid isPermaLink="false">2568658 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/sonarlint#comments</comments>
+  </item>
+  <item>
+    <title>Teamscale Eclipse Plugin</title>
+    <link>http://marketplace.eclipse.org/content/teamscale-eclipse-plugin</link>
+    <description>&lt;div class=&quot;field field-name-field-resource-image field-type-image field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;http://marketplace.eclipse.org/sites/default/files/logo_114.png&quot; width=&quot;110&quot; height=&quot;25&quot; alt=&quot;&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-created field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Created:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Thu, 2015-02-12 10:16&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;field field-name-shared-date-updated field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Date Updated:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;Wed, 2016-12-21 08:04&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;a href=&quot;/search/content/%22CQSE%20GmbH%22&quot;&gt;CQSE GmbH&lt;/a&gt;&lt;div class=&quot;field field-name-shared-submitted-by field-type-text field-label-inline clearfix&quot;&gt;&lt;div class=&quot;field-label&quot;&gt;Submitted by:&amp;nbsp;&lt;/div&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;a href=&quot;/user/tkinnen/listings&quot; title=&quot;Thomas Kinnen&quot;&gt;Thomas Kinnen&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_start --&gt;&lt;div class=&quot;field field-name-body field-type-text-with-summary field-label-hidden&quot;&gt;&lt;div class=&quot;field-items&quot;&gt;&lt;div class=&quot;field-item even&quot;&gt;&lt;p&gt;The Teamscale Eclipse Plugin allows for seamless integration of quality defects found by the Teamscale software quality analysis server. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Note: An existing Teamscale Server is necessary to use this plugin!&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Teamscale analyzes your source code incrementally with every commit, providing feedback on the quality of your code in near real-time. &lt;/p&gt;
+&lt;p&gt;This plugin has the following features:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Auto-detect which branch is being used (git &amp;amp; svn) and display all data accordingly&lt;/li&gt;
+&lt;li&gt;Display defects in the Findings view&lt;/li&gt;
+&lt;li&gt;Allow comparison of clones using the clone compare editor&lt;/li&gt;
+&lt;li&gt;Display findings next to your code&lt;/li&gt;
+&lt;li&gt;Blacklist findings&lt;/li&gt;
+&lt;li&gt;Use baselines to only display defects that are new&lt;/li&gt;
+&lt;li&gt;Show test coverage from Teamscale server&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;!-- google_ad_section_end --&gt;</description>
+     <pubDate>Thu, 12 Feb 2015 15:16:07 +0000</pubDate>
+ <dc:creator>tkinnen</dc:creator>
+ <guid isPermaLink="false">2188950 at http://marketplace.eclipse.org</guid>
+ <comments>http://marketplace.eclipse.org/content/teamscale-eclipse-plugin#comments</comments>
+  </item>
+  </channel>
+</rss>
