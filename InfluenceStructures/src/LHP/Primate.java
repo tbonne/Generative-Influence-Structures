@@ -27,6 +27,7 @@ public class Primate {
 	Coordinate destination;
 	int myGroup;
 	int feedingCount;
+	double safetyCount;
 	
 	//reinforcement algo
 	double distIdeal;
@@ -136,10 +137,10 @@ public class Primate {
 		return this.myGroup;
 	}
 	public double getEnergy(){
-		return this.myGroup;
+		return this.level_energy;
 	}
-	public int getSafety(){
-		return this.myGroup;
+	public double getSafety(){
+		return this.level_safety;
 	}
 	public int getIdNumber(){
 		return id;

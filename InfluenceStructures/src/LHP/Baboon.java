@@ -42,6 +42,7 @@ public class Baboon extends Primate{
 		foodTarget=null;
 		followMate=null;
 		feedingCount=0;
+		safetyCount=0;
 
 		myVector = new ArrayRealVector(2,0.1);
 
@@ -51,27 +52,27 @@ public class Baboon extends Primate{
 		nodes = new ArrayList<Node>();
 		edges = new ArrayList<Edge>();
 
-		//set up nodes
-		for(int i=0;i<Parameter.inputLayerSize;i++){
-			Node newN = new Node(i,null);
-			inputLayer.add(newN);
-			nodes.add(newN);
-		}
-
-		for(int i=0;i<Parameter.outputLayerSize;i++){
-			Node newN = new Node(i,ModelSetup.orderedP.get(i));
-			outputLayer.add(newN);
-			nodes.add(newN);
-		}
-
-		//set up edges: input to output layers
-		for(Node start:inputLayer){
-			for(Node end:outputLayer){
-				Edge newE = new Edge(start,end);
-				end.getBackEdges().add(newE);
-				edges.add(newE);
-			}
-		}
+//		//set up nodes
+//		for(int i=0;i<Parameter.inputLayerSize;i++){
+//			Node newN = new Node(i,null);
+//			inputLayer.add(newN);
+//			nodes.add(newN);
+//		}
+//
+//		for(int i=0;i<Parameter.outputLayerSize;i++){
+//			Node newN = new Node(i,ModelSetup.orderedP.get(i));
+//			outputLayer.add(newN);
+//			nodes.add(newN);
+//		}
+//
+//		//set up edges: input to output layers
+//		for(Node start:inputLayer){
+//			for(Node end:outputLayer){
+//				Edge newE = new Edge(start,end);
+//				end.getBackEdges().add(newE);
+//				edges.add(newE);
+//			}
+//		}
 
 		//start off with one for all ideal levels
 		level_energy = RandomHelper.nextDouble()*0.3; 
@@ -112,7 +113,7 @@ public class Baboon extends Primate{
 				}
 			}
 		} else {
-			followMate=chooseSocialPartner();
+			//followMate=chooseSocialPartner();
 		}
 
 		//move based on attraction to food/social partners and repulsion from strangers
@@ -137,16 +138,25 @@ public class Baboon extends Primate{
 		} else {
 			move(myVector,true);
 		}
+		safetyCount = safetyCount+this.getMyCV();
 	}
 
 	/****************************
 	 * 							*
-	 * 		Energy updates		*
+	 * 		Individual updates	*
 	 * 							*
 	 * *************************/
 
 	public void energyUpdate(){
 		//nothing right now: agents are assumed to be always hungry, and will eat when in a patch
+
+		//how did the chosen action affect my sensory inputs
+		level_energy = estimateEnergyIntake();
+		level_safety = estimateSafety(); //circular variation used as measure of safety
+		
+		if(level_energy<0.2 || level_safety>0.8){
+			followMate=null;	
+		}
 	}
 
 
@@ -284,13 +294,14 @@ public class Baboon extends Primate{
 		
 		//how did the chosen action affect my sensory inputs
 		level_energy = estimateEnergyIntake();
-		level_safety = getMeanCV(); //circular variation used as measure of safety
+		level_safety = estimateSafety(); //circular variation used as measure of safety
 		
 		//adapt behaviour selection mechanism
-		adjustDecisionWeights();
+		//adjustDecisionWeights();
 		resetActionNetwork();
 	}
 
+	
 	/**********************/
 
 	private int[] motivationalFilter(double energy, double safety){
@@ -314,61 +325,86 @@ public class Baboon extends Primate{
 		return mot;
 	}
 	
+	private int[] motivationalFilterInteraction(double energy, double safety){
+		//new filtered inputs: motivation
+		int[] mot = new int[3];
+		int condMet = 0;
+		
+		mot[1] = 0;
+		mot[0] = 0;
+		mot[2] = 0;
+
+		if(energy <= Parameter.energyLowThresh){
+			mot[0] = 1;
+			condMet=1;
+		}
+		
+		if (safety <Parameter.safetyLowThresh){
+			mot[1] = 1;
+			condMet=1;
+		} 
+		
+		if (condMet==0) {
+			mot[2] = 1;
+		}
+
+		return mot;
+	}
+	
 	private void resetActionNetwork(){
 		for(Node n:this.getAllNodes()){
 			n.setActive(0);
 			n.setStrength(0);
-		} i've stopped here... there is work to be done in setting up the timimg of the pre-act-post aspects to the RL algorithm... parameter definitions... and i'll need to be explicit about the noise and saturation choices...
+		} 
 	}
 	
-	private void adjustDecisionWeights(){
-
-		//**************************agents seem to get stuck on one outcome? but not always
-		double success = this.getTotalChangeInIdeals(); //learning rate
-
-		//adjust edges between output layer and input layer
-		if(this.getIdNumber()==1){
-			System.out.println("adjusting weights (yes/no): "+success);
-		}
-		
-		Node actionNode = outputLayer.get(getCurrentAction());
-
-		//if start and end node are active increase weight, else decrease weight
-		if(success==0){
-			for(Edge e:actionNode.getBackEdges()){
-				if(e.getStartNode().isActive()==1){
-					if(this.getIdNumber()==1)System.out.println("down - start: "+e.getWeight());
-					e.adjustWeightDOWN();
-					if(this.getIdNumber()==1)System.out.println("down - end: "+e.getWeight());
-				}
-			}
-			
-			/*for (Edge edge: this.getAllEdges()){
-				if(edge.getStartNode().isActive()==1 && edge.getEndNode().isActive()==1){
-					if(this.getIdNumber()==1)System.out.println("up - start: "+edge.getWeight());
-					edge.adjustWeightUP(change);
-					if(this.getIdNumber()==1)System.out.println("up - end: "+edge.getWeight());
-				}
-			}*/
-		}else{
-			for(Edge e:actionNode.getBackEdges()){
-				if(e.getStartNode().isActive()==1){
-					if(this.getIdNumber()==1)System.out.println("up - start: "+e.getWeight());
-					e.adjustWeightUP();
-					if(this.getIdNumber()==1)System.out.println("up - end: "+e.getWeight());
-				}
-			}
-			
-			/*for (Edge edge: this.getAllEdges()){
-				if(edge.getStartNode().isActive()==1 && edge.getEndNode().isActive()==1){
-					if(this.getIdNumber()==1)System.out.println("Down - start: "+edge.getWeight());
-					edge.adjustWeightDOWN(change);
-					if(this.getIdNumber()==1)System.out.println("Down - end: "+edge.getWeight());
-				}
-			}*/
-		}
-	}
-	
+//	private void adjustDecisionWeights(){
+//
+//		double success = this.getTotalChangeInIdeals(); //learning rate
+//
+//		//adjust edges between output layer and input layer
+//		if(this.getIdNumber()==1){
+//			System.out.println("adjusting weights (yes/no): "+success);
+//		}
+//		
+//		Node actionNode = outputLayer.get(getCurrentAction());
+//
+//		//if start and end node are active increase weight, else decrease weight
+//		if(success==0){
+//			for(Edge e:actionNode.getBackEdges()){
+//				if(e.getStartNode().isActive()==1){
+//					if(this.getIdNumber()==1)System.out.println("down - start: "+e.getWeight());
+//					e.adjustWeightDOWN();
+//					if(this.getIdNumber()==1)System.out.println("down - end: "+e.getWeight());
+//				}
+//			}
+//			
+//			/*for (Edge edge: this.getAllEdges()){
+//				if(edge.getStartNode().isActive()==1 && edge.getEndNode().isActive()==1){
+//					if(this.getIdNumber()==1)System.out.println("up - start: "+edge.getWeight());
+//					edge.adjustWeightUP(change);
+//					if(this.getIdNumber()==1)System.out.println("up - end: "+edge.getWeight());
+//				}
+//			}*/
+//		}else{
+//			for(Edge e:actionNode.getBackEdges()){
+//				if(e.getStartNode().isActive()==1){
+//					if(this.getIdNumber()==1)System.out.println("up - start: "+e.getWeight());
+//					e.adjustWeightUP();
+//					if(this.getIdNumber()==1)System.out.println("up - end: "+e.getWeight());
+//				}
+//			}
+//			
+//			/*for (Edge edge: this.getAllEdges()){
+//				if(edge.getStartNode().isActive()==1 && edge.getEndNode().isActive()==1){
+//					if(this.getIdNumber()==1)System.out.println("Down - start: "+edge.getWeight());
+//					edge.adjustWeightDOWN(change);
+//					if(this.getIdNumber()==1)System.out.println("Down - end: "+edge.getWeight());
+//				}
+//			}*/
+//		}
+//	}
+//	
 	
 	/*********************************************************************************************************/
 	
@@ -382,7 +418,15 @@ public class Baboon extends Primate{
 		
 	}
 	
-	public double getMeanCV(){
+	private double estimateSafety(){
+		double safe = (double)safetyCount / (double)Parameter.post_delta_T;
+		
+		safetyCount=0;
+		
+		return safe;
+	}
+	
+	public double getMyCV(){
 
 		double cosAngle=0,sinAngle=0;
 		int count=0;

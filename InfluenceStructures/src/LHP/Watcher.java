@@ -100,20 +100,24 @@ public class Watcher {
 
 		//	to do every minute
 		if(RunEnvironment.getInstance().getCurrentSchedule().getTickCount()%(Parameter.recordingFreq)==0){
-			Coordinate groupCenter = calculateGroupCenter();
-			centers.add(groupCenter);
-			speeds.add(calculateSpeed(groupCenter));
-			spreads.add(calculateSpread(groupCenter));
+			//Coordinate groupCenter = calculateGroupCenter();
+			//centers.add(groupCenter);
+			//speeds.add(calculateSpeed(groupCenter));
+			//spreads.add(calculateSpread(groupCenter));
 			//ratio.add(calculateLegthWidthRatio());
-			perpen.add(this.calculateDiffAngle(this.getDirectionOfTravel().getEntry(1)/this.getDirectionOfTravel().getEntry(0), this.calculateSlopeOfEllipse().getEntry(1)/this.calculateSlopeOfEllipse().getEntry(0)));
-			shapeRatio.add(this.calculateShape(Math.atan2(this.calculateSlopeOfEllipse().getEntry(1), this.calculateSlopeOfEllipse().getEntry(0))));
-			System.out.println("step");
+			//perpen.add(this.calculateDiffAngle(this.getDirectionOfTravel().getEntry(1)/this.getDirectionOfTravel().getEntry(0), this.calculateSlopeOfEllipse().getEntry(1)/this.calculateSlopeOfEllipse().getEntry(0)));
+			//shapeRatio.add(this.calculateShape(Math.atan2(this.calculateSlopeOfEllipse().getEntry(1), this.calculateSlopeOfEllipse().getEntry(0))));
+			//System.out.println("step");
 		}
 
-		//	to do every 1000 steps
-		if(RunEnvironment.getInstance().getCurrentSchedule().getTickCount()%(1000)==0){
+		//	to do every X steps
+		if(RunEnvironment.getInstance().getCurrentSchedule().getTickCount()%(Parameter.post_delta_T)==0){
 			//System.out.println("End of hour "+ hour);
 			//System.out.println(" ");
+			for(Primate p:ModelSetup.getAllPrimateAgents()){
+				System.out.println(p.getId() + " is following "+p.followMate.getId());
+			}
+			System.out.println("next sample");
 			hour++;
 		}
 
@@ -121,7 +125,7 @@ public class Watcher {
 		if(RunEnvironment.getInstance().getCurrentSchedule().getTickCount()>=Parameter.stepsPerDay*Parameter.endDay){
 			executor.shutdown();
 			RunEnvironment.getInstance().endAt(this.runEnvironment.getCurrentSchedule().getTickCount());
-				recordSummaryStats();
+			//	recordSummaryStats();
 			//	recordIndPosisions();
 			//	recordFoodPo();
 			//	recordFood_txt();

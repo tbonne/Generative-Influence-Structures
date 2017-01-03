@@ -2,12 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="past_energy_level" key="selection"/>
+		<item value="direction" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="direction"/>
+			<item value="shape"/>
+			<item value="perpend"/>
+			<item value="slope"/>
 			<item value="past_energy_level"/>
 			<item value="level_energy"/>
 		</list>

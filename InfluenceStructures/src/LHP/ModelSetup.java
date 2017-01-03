@@ -153,30 +153,30 @@ public class ModelSetup implements ContextBuilder<Object>{
 			p.setPrimateList(new ArrayList(primatesAll));
 		}
 		
-		for(Primate p:orderedP){
+//		for(Primate p:orderedP){
 			//System.out.println("starting with "+p.id);
-			if(p.getId()==0)p.setBaboonFollower(0);
-			if(p.getId()==1)p.setBaboonFollower(0);
-			if(p.getId()==2)p.setBaboonFollower(0);//3
-			if(p.getId()==3)p.setBaboonFollower(0);
-			if(p.getId()==4)p.setBaboonFollower(2);
-			if(p.getId()==5)p.setBaboonFollower(2);
-			if(p.getId()==6)p.setBaboonFollower(2);
-			if(p.getId()==7)p.setBaboonFollower(1);
-			if(p.getId()==8)p.setBaboonFollower(1);//7
-			if(p.getId()==9)p.setBaboonFollower(1);
-			if(p.getId()==10)p.setBaboonFollower(3);
-			if(p.getId()==11)p.setBaboonFollower(3);
-			if(p.getId()==12)p.setBaboonFollower(3);
-			//if(p.getId()==13)p.setBaboonFollower(11);
+//			if(p.getId()==0)p.setBaboonFollower(0);
+//			if(p.getId()==1)p.setBaboonFollower(0);
+//			if(p.getId()==2)p.setBaboonFollower(0);//3
+//			if(p.getId()==3)p.setBaboonFollower(0);
+//			if(p.getId()==4)p.setBaboonFollower(2);
+//			if(p.getId()==5)p.setBaboonFollower(2);
+//			if(p.getId()==6)p.setBaboonFollower(2);
+//			if(p.getId()==7)p.setBaboonFollower(1);
+//			if(p.getId()==8)p.setBaboonFollower(1);//7
+//			if(p.getId()==9)p.setBaboonFollower(1);
+//			if(p.getId()==10)p.setBaboonFollower(3);
+//			if(p.getId()==11)p.setBaboonFollower(3);
+//			if(p.getId()==12)p.setBaboonFollower(3);
+//			//if(p.getId()==13)p.setBaboonFollower(11);
 			
 			//p.setBaboonFollowerRand(p);
 			//p.setBaboonFollowerLeader();
-		}
+//		}
 
-		for(Primate p:this.getAllPrimateAgents()){
-			System.out.println("I'm "+p.id+ " following " + p.followMate.id);
-		}
+//		for(Primate p:this.getAllPrimateAgents()){
+//			System.out.println("I'm "+p.id+ " following " + p.followMate.id);
+//		}
 
 
 		/************************************
@@ -226,7 +226,7 @@ public class ModelSetup implements ContextBuilder<Object>{
 			ScheduleParameters agentStepParamsPrimateBehaviour = ScheduleParameters.createRepeating(1, 1, 5); //start, interval, priority (high number = higher priority)
 			schedule.schedule(agentStepParamsPrimateBehaviour,executor,"behaviour");
 
-			ScheduleParameters agentStepParamsPrimateEnergy = ScheduleParameters.createRepeating(1, 1, 4); //start, interval, priority (high number = higher priority)
+			ScheduleParameters agentStepParamsPrimateEnergy = ScheduleParameters.createRepeating(1, Parameter.post_delta_T, 4); //start, interval, priority (high number = higher priority)
 			schedule.schedule(agentStepParamsPrimateEnergy,executor,"energyUpdate");
 
 		}
