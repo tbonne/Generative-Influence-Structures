@@ -59,7 +59,7 @@ public class Cell {
 		visibleSites = new ArrayList<Cell>();
 		familiarity = new ArrayList<Double>(Parameter.numbOfGroups*Parameter.groupSize);
 		for(int n =0;n<Parameter.numbOfGroups*Parameter.groupSize;n++){
-			familiarity.add(0.001);
+			familiarity.add(Parameter.minPatchFamiliarity);
 		}
 	}
 	
@@ -144,20 +144,20 @@ public class Cell {
 		}
 	}
 	
-	private void change(){
+	private void change() {
 		
 		for(int i =0;i<familiarity.size();i++){
 			double f = familiarity.get(i);
-				if(f<0.001){
-					f=0.001;
+				if(f<Parameter.minPatchFamiliarity){
+					f=Parameter.minPatchFamiliarity;
 				} else {
-					f = Math.max( (f - Parameter.cellChangeRate * (1-f)*f),0.001);
+					f = Math.max( (f - Parameter.cellChangeRate ),Parameter.minPatchFamiliarity);
 					familiarity.set(i, f);
 				}
 			}
 		}
 	
-	public synchronized double eatMe(double bite){
+	public synchronized double eatMe(double bite, Primate p){
 		double biteSize =0;
 		if (this.getResourceLevel() - bite > 0){
 				setResourceLevel( (this.getResourceLevel() - bite));
@@ -167,9 +167,11 @@ public class Cell {
 			setResourceLevel(0);
 		}
 		
-		//biteSize = this.getResourceLevel();
-		//setResourceLevel(0);
+		//set familiarity to max
+		this.familiarity.set(p.getId(), 1.0);
 		
+
+		//update this cell
 		ModelSetup.addToCellUpdateList(this);
 		timeCounter=0;
 		return biteSize;
@@ -198,4 +200,14 @@ public class Cell {
 	public int getID(){
 		return id;
 	}
+	public double familiarity(int i){
+		return this.familiarity.get(i);
+	}
+//	public double getTotalFam(){
+//		double total = 0;
+//		for(Double dd: this.familiarity){
+//			total = total + dd;
+//		}
+//		return total;
+//	}
 }

@@ -8,6 +8,7 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealVector;
 
 import cern.jet.random.VonMises;
+import repast.simphony.space.graph.RepastEdge;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
@@ -16,6 +17,7 @@ public class Primate {
 	//primate level variables
 	Coordinate coordinate,foodTarget;
 	ArrayList<Baboon> primateList;
+	ArrayList<Double> primateList_familiarity;
 	List<Cell> visualPatches;
 	List<Primate> visualPartners;
 	Primate followMate;
@@ -26,21 +28,13 @@ public class Primate {
 	int sex;
 	Coordinate destination;
 	int myGroup;
-	int feedingCount;
+	int feedingCount,myCount;
 	double safetyCount;
-	
-	//reinforcement algo
-	double distIdeal;
-	double sensory_energy,level_energy,past_energy_level;
-	double sensory_safety, level_safety,past_safety_level;
-	int filtered_energy,past_filtered_energy;
-	int filtered_safety,past_filtered_safety;
-	ArrayList<Node> inputLayer,outputLayer,nodes;
-	ArrayList<Edge> edges;
-	int action;
-
+	double level_energy;
+	double level_safety;
 	VonMises vm;
 	RealVector myVector;
+	RepastEdge myEdgeOut;
 
 
 	/****************************
@@ -144,8 +138,5 @@ public class Primate {
 	}
 	public int getIdNumber(){
 		return id;
-	}
-	public ArrayList<Node> getAllNodes(){
-		return nodes;
 	}
 }

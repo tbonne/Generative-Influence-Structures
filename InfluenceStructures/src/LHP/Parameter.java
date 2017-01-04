@@ -20,42 +20,44 @@ public class Parameter {
 	//Watcher agent (for observations)
 	public final static double stepsPerDay = 60*60*8;	//1 sec interval //each step represents 1 min (1min*60*12), for a total of 12hours of active time per day  //48*4
 	public final static double recordingFreq = 60*10;	
-	public final static int endDay = 2;		 			// will run the simulation until it has completed this many days
+	public final static int endDay = 20;		 			// will run the simulation until it has completed this many days
 	
 	//primate: population
 	public static int groupSize = 20;						//number of individuals in a group
 	public static int numbOfGroups=1;						//number of groups
-	public static int maxInitialGroupDistance = 100;         //radius of the initial group (m) (starting conditions)
+	public static int maxInitialDispersion = 10;        	//radius of the initial group (m) (starting conditions)
 	
 	//primate: movement
 	public static double visual_range = 50;					//range at which individuals can see food patches
-	public static double attractionWeight = 2;
+	public static double attractionWeight = 4;
 	public static double repulsionWeight = 2;
-	public static double bearingWeight = 1;
-	public static double foodWeight = 0.5;
-	public static double attractionDistMax = 10;
-	public static double repulsionDistMax = 10;
-	//public static double followMateProb = 0.001; 		//this is the probability that the individual will switch who they are attracted to in the group (random for now). binomial with p=0.01, then mean time attracted to followMate is 1000 steps.
+	public static double bearingWeight = 2;
+	public static double foodWeight = 1;
+	public static double attractionDistMax = 5;
+	public static double repulsionDistMax = 5;
+	
+	//primate: following behaviour
+	public static double chooseSelf = 0.0;
+	public static double fam_deg = 0.001;					//degradation in familiarity each step
+	public static double minPrimateFamiliarity = 0.1;		//minimum familiarity value of a primate (lower more resistance to following novel primates)
 	
 	//primate: reinforcement
-	public static double energyLowThresh = 0.1;			//bites per minute at which the individual focuses on increasing foraging intake
-	public static double safetyLowThresh = 0.2;			//safety value at which the individual focuses on decreasing isolation
-	public static final int inputLayerSize = 2;			//right now only safety and energy are considered
-	public static final int outputLayerSize = groupSize; //equal to the number of partners in the group (i.e., who can i follow)
-	public static int post_delta_T = 500;				//number of steps between taking an action and assessing it's quality
-	public static double learningRate = 0.1;            //rate of change in the weights
+	public static double energyLowThresh = 0.1;				//bites per minute at which the individual focuses on increasing foraging intake
+	public static double safetyLowThresh = 0.8;				//safety value at which the individual focuses on decreasing isolation
+	public static int post_delta_T = 500;					//number of steps between taking an action and assessing it's quality
+	
+	//primate: energetics
+	public static double biteSize = 0.01;					//Amount of food reduced per time step
+	public static double minPatchFamiliarity = 0.1;		//minimum familiarity value of a patch (lower more resistance to using novel patches)
 	
 	//Food landscape
 	public static double envHomogen = 1;
-	public static double biteSize = 0.01;					//Amount of food reduced per time step
-	public static int landscapeWidth = 5000;	//500				//width and length of the landscape meters /10000
-	public static int landscapeHeight = 5000;	//1000			//width and length of the landscape meters /10000
-	public static double regrowthRate = 0.0;				//rate at which regrowth occurs 
-	public static double cellChangeRate = 0.001;			//rate of decrease in cell familiarity over time
-	
-	//public static double food = 4;						//Amount of food within a food site (homogenous for now)
-	public static double foodBuffer = 1;						//size of the food buffer in meters
-	public static double foodDensity = 0.01;              //avg number of food patches within 1m2 area
+	public static int landscapeWidth = 1000;				//width and length of the landscape meters /10000
+	public static int landscapeHeight = 1000;				//width and length of the landscape meters /10000
+	public static double foodBuffer = 1;					//size of the food patch radius in meters
+	public static double foodDensity = 0.01;              	//avg number of food patches within 1m2 area
+	public static double regrowthRate = 0.0001;				//rate at which regrowth occurs
+	public static double cellChangeRate = 0.0001;			//rate of decrease in cell familiarity over time
 
 
 	//Constructor: used to set values from batch runs or the GUI
@@ -81,7 +83,4 @@ public class Parameter {
 		
 	}
 	
-	//public static double foodAvoidanceDistance = 10;		//radius in which food is not selected for when a stranger is nearby (m)
-		//public final static double maxDistancePerStep = 0.5; 	//distance (meter) that an individual can travel within one time-step (1sec)
-		//public final static double bodyRadius = 4; 				//this is the physical space taken up by an agent (meters)
 }

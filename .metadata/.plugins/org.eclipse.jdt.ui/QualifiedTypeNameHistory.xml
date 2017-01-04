@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.rosuda.REngine.Rserve.RConnection"/>
+<fullyQualifiedTypeName name="org.rosuda.REngine.Rserve.RserveException"/>
+<fullyQualifiedTypeName name="org.rosuda.JRI.REXP"/>
+<fullyQualifiedTypeName name="org.rosuda.REngine.REXP"/>
+<fullyQualifiedTypeName name="org.rosuda.REngine.RList"/>
+<fullyQualifiedTypeName name="org.rosuda.REngine.REXPMismatchException"/>
 <fullyQualifiedTypeName name="LHP.ModelSetup"/>
+<fullyQualifiedTypeName name="org.rosuda.REngine.REXPDouble"/>
+<fullyQualifiedTypeName name="repast.simphony.context.space.graph.NetworkBuilder"/>
+<fullyQualifiedTypeName name="repast.simphony.space.graph.Network"/>
+<fullyQualifiedTypeName name="repast.simphony.space.graph.RepastEdge"/>
 </qualifiedTypeNameHistroy>

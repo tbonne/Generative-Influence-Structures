@@ -1,0 +1,460 @@
+package LHP;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.RealVector;
+
+import repast.simphony.random.RandomHelper;
+import repast.simphony.space.graph.Network;
+import repast.simphony.space.graph.RepastEdge;
+import tools.SimUtils;
+import tools.MoveUtils;
+import jsc.distributions.Lognormal;
+import cern.jet.random.*;
+
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Envelope;
+
+public class Baboon extends Primate{
+
+	/****************************
+	 * 							*
+	 * Building a baboon     	*
+	 * 							*
+	 * *************************/
+
+	//initialize a primate agent
+	public Baboon(int ID, Coordinate c, int groupSize, boolean isMale, int group){
+		this.id = ID;
+		this.coordinate = c;
+		this.myGroup=group;
+		if (isMale == true){
+			this.sex =1; 
+		} else {
+			this.sex = 0;
+		}
+		destination = null;
+		RealVector initialFacing = new ArrayRealVector(2,0);
+		initialFacing.addToEntry(0,RandomHelper.nextDoubleFromTo(-1, 1));
+		initialFacing.addToEntry(1,RandomHelper.nextDoubleFromTo(-1, 1));
+		this.setFacing(initialFacing);
+		blocked=false;
+		foodTarget=null;
+		followMate=null;
+		feedingCount=0;
+		safetyCount=0;
+		this.primateList_familiarity = new ArrayList<Double>();
+		for(int i = 0 ; i < Parameter.groupSize ; i ++){
+			primateList_familiarity.add(Math.random());
+		}
+
+		myVector = new ArrayRealVector(2,0.1);
+
+		level_energy = RandomHelper.nextDouble()*0.3; 
+		level_safety = 1;
+		
+	}
+
+
+	/************************************
+	 * 									*
+	 * Stimuli (internal + external) 	*
+	 * 									*
+	 * *********************************/
+
+	public void getInputs(){
+		//update where the agent is on the landscapes
+		this.coordinate = ModelSetup.getAgentGeometry(this).getCoordinates()[0];
+
+		//update which patch i'm in... if any
+		this.myPatch = this.getCurrentFoodPatch();
+
+		//update which patches i can see
+		if(this.myPatch!=null){
+			this.visualPatches = this.getVisibleFoodPatches(Parameter.visual_range,myPatch.visibleSites);
+		} else {
+			this.visualPatches = this.getVisibleFoodPatches(Parameter.visual_range);
+		}
+
+		//update familiarization scores
+		updateFam();
+
+		//update my social partner of interest (attraction)
+		if(followMate==null){
+			updateFollowMateFam();
+			//updateFollowMateRandom();
+		} 
+
+		//choose where to move based on attraction to food/social partners and repulsion from strangers
+		attractionRepulsionRand();
+
+
+	}
+
+	/****************************
+	 * 							*
+	 * Behavioural response 	*
+	 * 							*
+	 * *************************/
+
+	public void behaviouralResponse(){
+		if(myPatch!=null){
+			if(myPatch.getResourceLevel()>Parameter.biteSize){
+				myPatch.eatMe(Parameter.biteSize);
+				feedingCount++;
+			} else {
+				move(myVector,true);
+			}
+		} else {
+			move(myVector,true);
+		}
+		safetyCount = safetyCount+this.getMyCV();
+	}
+
+	/****************************
+	 * 							*
+	 * 		Individual updates	*
+	 * 							*
+	 * *************************/
+
+	public void energyUpdate(){
+		//nothing right now: agents are assumed to be always hungry, and will eat when in a patch
+
+		//how did the chosen action affect my sensory inputs
+		level_energy = estimateEnergyIntake();
+		level_safety = estimateSafety(); //circular variation used as measure of safety
+
+		if(level_energy<0.2 || level_safety>0.8){
+			followMate=null;	
+		}
+	}
+
+
+	/*********************************************************************************************************/
+
+	private double estimateEnergyIntake(){
+
+		double energy =  (double)feedingCount / (double)Parameter.post_delta_T;
+
+		feedingCount=0;
+
+		return energy;
+
+	}
+
+	private double estimateSafety(){
+		double safe = (double)safetyCount / (double)Parameter.post_delta_T;
+
+		safetyCount=0;
+
+		return safe;
+	}
+
+	public double getMyCV(){
+
+		double cosAngle=0,sinAngle=0;
+		int count=0;
+		double mR = 0;
+
+		for (Primate groupMate: ModelSetup.orderedP){
+
+			if(groupMate!=null){
+				double angle = getAngle(this.getCoord(),groupMate.getCoord());
+				cosAngle = cosAngle + Math.cos(angle);
+				sinAngle = sinAngle + Math.sin(angle);
+				count++;
+			}
+		}
+
+		if(count>0){
+			mR = Math.pow( Math.pow(cosAngle,2) + Math.pow(sinAngle,2) , 0.5) / ((double)count);
+		} else{
+			System.out.println("something is wrong with the count in mean resultant... no groupmates");
+		}
+
+		return mR;
+	}
+
+	public static float getAngle(Coordinate s1, Coordinate s2) {
+
+		//get coordinates from simple feature
+		Coordinate source = s1;
+
+		//angle
+		float angle = (float) (Math.atan2(s2.y - source.y, s2.x - source.x));
+
+		if(angle < 0){
+			angle += 2*Math.PI;
+		}
+
+		return (float) angle;
+	}
+
+	/****************************
+	 * 							*
+	 * 	   Movement model	    *
+	 * 							*
+	 * *************************/
+
+	private void attractionRepulsionRand(){
+
+		//// calculate adjustment for previous bearing
+		myVector.unitize();
+		myVector = myVector.mapMultiply(Parameter.bearingWeight);
+
+		//// calculate adjustment for food environment
+		//calculate the weights of each patch
+		ArrayList<Double> weights = new ArrayList<Double>();
+		ArrayList<RealVector> directions = new ArrayList<RealVector>();
+		double sum = 0;
+
+		for(Cell c : this.visualPatches){
+
+			//calculate weight
+			double distance = Math.max(Parameter.foodBuffer,  c.getCoord().distance(this.getCoord()));
+			double weight = (c.getResourceLevel()) / distance;  //no effect of     *  c.getFamiliarity(this.getId() 
+			weights.add(weight);
+			sum = sum + weight;
+
+			//calculate the direction
+			RealVector patchVector = new ArrayRealVector(2);
+			double distX = c.getCoord().x-this.getCoord().x;
+			double distY = c.getCoord().y-this.getCoord().y;
+			if(distX!=0 && distY!=0){
+				patchVector.setEntry(0,distX);
+				patchVector.setEntry(1,distY);
+				patchVector.unitize();
+			}
+			directions.add(patchVector);
+		}
+
+		//standardize the patch weights to sum to one
+		for(Double d : weights){
+			d=d/sum;
+		}
+
+		//calculate the avg direction (weights*dir to each patch)
+		RealVector avgFoodVector = new ArrayRealVector(2);
+		boolean foodFound = false;
+		for(int i = 0 ; i< weights.size();i++){
+			avgFoodVector = avgFoodVector.add(directions.get(i).mapMultiply(weights.get(i)));
+			foodFound = true;
+		}
+
+		//add to myVector
+		if(foodFound==true){
+			avgFoodVector.unitize();
+			avgFoodVector = avgFoodVector.mapMultiply(Parameter.foodWeight);
+			myVector = myVector.add(avgFoodVector);
+		}
+
+		////calculate adjustment for attraction
+		double distToPartner = followMate.getCoord().distance(this.getCoord());
+		double magnitudeAtt = Math.max(Parameter.attractionWeight*(1-(Parameter.attractionDistMax/distToPartner)),0);
+		double angleToP = MoveUtils.getAngle(this.getCoord(), followMate.getCoord(),true);
+		myVector.addToEntry(0, magnitudeAtt*Math.cos(angleToP));
+		myVector.addToEntry(1, magnitudeAtt*Math.sin(angleToP));
+
+		//		////calculate adjustment for repulsion
+		//		double magnitudeRep = 0;
+		//		for(Primate stranger:getStrangers()){
+		//			double distToStr = stranger.getCoord().distance(this.getCoord());
+		//			magnitudeRep = Math.max(0, Parameter.repulsionWeight*((1-(distToStr/Parameter.repulsionDistMax))));
+		//			double angleToS = MoveUtils.getAngle(this.getCoord(), stranger.getCoord(),true);
+		//			myVector.addToEntry(0, -magnitudeRep*Math.cos(angleToS));
+		//			myVector.addToEntry(1, -magnitudeRep*Math.sin(angleToS));
+		//		}
+
+		//// Choose final vector based on uncertainty around alternative influencing factors
+		double u = Math.atan2(myVector.getEntry(1), myVector.getEntry(0));
+		double length = Math.pow(Math.pow(myVector.getEntry(0),2)+Math.pow(myVector.getEntry(1), 2),0.5);
+		double maxLength = Parameter.bearingWeight + Parameter.foodWeight + magnitudeAtt ;//+ magnitudeRep;
+		double k = Math.max(-2*Math.log(length/maxLength),0.000001);
+		if(k<=0){
+			System.out.println("zeero u");
+			k=0.0;
+		}
+		if(u==0)System.out.println("zeero u");
+		if(u!=0){
+			u = u + VonMises.staticNextDouble(1/k); 
+			double deltaX = Math.cos(u);
+			double deltaY = Math.sin(u); 
+			RealVector finalVector = new ArrayRealVector(2);
+			finalVector.setEntry(0, deltaX);
+			finalVector.setEntry(1, deltaY);
+			finalVector.unitize();
+			myVector = finalVector;
+		}
+	}
+
+
+	/****************************
+	 * 							*
+	 * 	   Changing Partner  	*
+	 * 							*
+	 * *************************/
+
+	//update familiarization
+	private void updateFam(){
+
+		for(int i = 0 ; i < Parameter.groupSize ; i++){
+
+			//get distance to primate
+			double fam = 0;
+			if(this.primateList.get(i).getId()!=this.getId()){
+				double dist = this.primateList.get(i).getCoord().distance(this.getCoord());
+				if(dist>0){
+					fam = 1/(Math.pow(dist,2));
+				} else {
+					fam = 0;
+				}
+				
+				
+			}
+
+			//add to familiarization score and subtract degradation
+			fam = fam - Parameter.fam_deg + this.primateList_familiarity.get(i);
+			this.primateList_familiarity.set(i, Math.min(100, Math.max(0, fam)));
+		}
+	}
+
+	public void updateFollowMateFam(){
+		
+		//sum all to one
+		double total = 0;
+		for(Double d:this.primateList_familiarity){
+			total = total + d;
+		}
+		for(int i = 0 ; i < this.primateList_familiarity.size() ; i++){
+			this.primateList_familiarity.set(i, this.primateList_familiarity.get(i)/total);
+		}
+		
+		//choose ranomd value
+		double rand = Math.random();
+		
+		//go through list and choose which ever primate first exceeds this number
+		double cumsum = 0;
+		Primate newFollow = null;
+		for(int i = 0 ; i < this.primateList_familiarity.size();i++){
+			cumsum = cumsum + this.primateList_familiarity.get(i);
+			if(cumsum>rand){
+				newFollow = this.primateList.get(i);
+				break;
+			}
+		}
+		
+		followMate = newFollow;
+		
+		if(newFollow == null){
+			System.out.println("stop here");
+		}
+	}
+
+	//update who i'm following
+	public void updateFollowMateRandom(){
+
+		Collections.shuffle(this.primateList);
+		for(Primate pp : this.primateList){
+			if(pp.getMyGroup()==this.getMyGroup() && pp.getId()!=this.getId()){
+				followMate=pp;
+				break;
+			}
+		}
+
+		try{
+			Network<Baboon> net = ModelSetup.getNetwork();
+			if(this.myEdgeOut!=null)net.removeEdge(this.myEdgeOut);	
+			RepastEdge myR = new RepastEdge(this,(Baboon)followMate,true);
+			net.addEdge(myR);
+			this.myEdgeOut=myR;
+		} catch (NullPointerException ee){
+			System.out.println("null in the net");
+		}
+
+
+	}
+
+
+	/****************************
+	 * 							*
+	 * 	   Methods				*
+	 * 							*
+	 * *************************/
+
+
+	private ArrayList<Cell> getVisibleFoodPatches(double f){
+
+		Iterable<Cell> objectsInArea = null;
+		Envelope envelope = new Envelope();
+		envelope.init(this.getCoord());
+		envelope.expandBy(f);
+		objectsInArea = ModelSetup.getGeog().getObjectsWithin(envelope,Cell.class);
+		envelope.setToNull();
+
+		ArrayList<Cell> obj = new ArrayList<Cell>();
+		while(objectsInArea.iterator().hasNext()){
+			Cell neigh = objectsInArea.iterator().next();
+			if(neigh.getCoord().distance(this.getCoord())<f){
+				boolean occupied = SimUtils.occupied(neigh.getCoord(),this.id);
+				if(occupied == false){
+					obj.add(neigh);
+				}
+			}
+		}
+
+		if(obj.size()<2)obj=getVisibleFoodPatches(2*Parameter.visual_range);
+
+		return obj;
+	}
+
+	private ArrayList<Cell> getVisibleFoodPatches(double f, ArrayList<Cell> food){
+
+		ArrayList<Cell> obj = new ArrayList<Cell>();
+		for(Cell c: food){
+			if(c.getCoord().distance(this.getCoord())<f){
+				boolean occupied = SimUtils.occupied(c.getCoord(),this.id);
+				if(occupied == false){
+					obj.add(c);
+				}
+			}
+		}
+
+		if(obj.size()<2)obj=getVisibleFoodPatches(2*Parameter.visual_range, food);
+
+		return obj;
+	}
+
+	private Cell getCurrentFoodPatch(){
+
+		Iterable<Cell> objectsInArea = null;
+		Envelope envelope = new Envelope();
+		envelope.init(this.getCoord());
+		envelope.expandBy(Math.max(Parameter.foodBuffer,4));
+		objectsInArea = ModelSetup.getGeog().getObjectsWithin(envelope,Cell.class);
+		envelope.setToNull();
+
+		Cell myCell = null;
+		double minDist = 999999;
+		while(objectsInArea.iterator().hasNext()){
+			Cell neigh = objectsInArea.iterator().next();
+			if(neigh.getCoord().distance(this.getCoord())<=Parameter.foodBuffer){
+				double dist = neigh.getCoord().distance(this.getCoord());
+				if(dist<minDist){
+					myCell = neigh;
+					minDist=dist;
+				}	
+			}
+		}
+		return myCell;
+	}
+
+	private synchronized void move(RealVector direction,boolean isCellSite){
+		//this.setFacing(direction);
+		MoveUtils.moveTo((Primate)this, direction);
+		this.setCoord(ModelSetup.getAgentGeometry(this).getCoordinates()[0]);
+	}
+
+
+}

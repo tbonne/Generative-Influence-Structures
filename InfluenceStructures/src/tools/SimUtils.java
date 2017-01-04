@@ -183,12 +183,12 @@ public final strictfp class SimUtils {
 
 	public static Coordinate generateCoordAround(double cenx,double ceny){
 		double angle = Math.random()*Math.PI*2;
-		double rDistance = Math.random()*Parameter.maxInitialGroupDistance;
+		double rDistance = Math.random()*Parameter.maxInitialDispersion;
 		Coordinate testCoord = new Coordinate(cenx+Math.cos(angle)*rDistance,ceny+Math.sin(angle)*rDistance);
 
 		while( (testCoord.x>0 && testCoord.y>0 && testCoord.x<Parameter.landscapeWidth && testCoord.y<Parameter.landscapeWidth) == false){
 			angle = Math.random()*Math.PI*2;
-			rDistance = Math.random()*Parameter.maxInitialGroupDistance;
+			rDistance = Math.random()*Parameter.maxInitialDispersion;
 			testCoord = new Coordinate(cenx+Math.cos(angle)*rDistance,ceny+Math.sin(angle)*rDistance);
 		}
 

@@ -7,6 +7,8 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealVector;
 
 import repast.simphony.random.RandomHelper;
+import repast.simphony.space.graph.Network;
+import repast.simphony.space.graph.RepastEdge;
 import tools.SimUtils;
 import tools.MoveUtils;
 import jsc.distributions.Lognormal;
@@ -43,43 +45,17 @@ public class Baboon extends Primate{
 		followMate=null;
 		feedingCount=0;
 		safetyCount=0;
+		this.primateList_familiarity = new ArrayList<Double>();
+		for(int i = 0 ; i < Parameter.groupSize ; i ++){
+			primateList_familiarity.add(Math.random());
+		}
 
 		myVector = new ArrayRealVector(2,0.1);
 
-		//setup my action selection network
-		inputLayer = new ArrayList<Node>();
-		outputLayer = new ArrayList<Node>();
-		nodes = new ArrayList<Node>();
-		edges = new ArrayList<Edge>();
-
-//		//set up nodes
-//		for(int i=0;i<Parameter.inputLayerSize;i++){
-//			Node newN = new Node(i,null);
-//			inputLayer.add(newN);
-//			nodes.add(newN);
-//		}
-//
-//		for(int i=0;i<Parameter.outputLayerSize;i++){
-//			Node newN = new Node(i,ModelSetup.orderedP.get(i));
-//			outputLayer.add(newN);
-//			nodes.add(newN);
-//		}
-//
-//		//set up edges: input to output layers
-//		for(Node start:inputLayer){
-//			for(Node end:outputLayer){
-//				Edge newE = new Edge(start,end);
-//				end.getBackEdges().add(newE);
-//				edges.add(newE);
-//			}
-//		}
-
-		//start off with one for all ideal levels
 		level_energy = RandomHelper.nextDouble()*0.3; 
 		level_safety = 1;
-		sensory_energy=1;
-		sensory_safety=1;
-		//past_energy_level = 1;
+		myCount=(int)Math.round(Math.random()*Parameter.post_delta_T);
+
 	}
 
 
@@ -103,21 +79,18 @@ public class Baboon extends Primate{
 			this.visualPatches = this.getVisibleFoodPatches(Parameter.visual_range);
 		}
 
+		//update familiarization scores
+		updateFam();
+
 		//update my social partner of interest (attraction)
 		if(followMate==null){
-			Collections.shuffle(this.primateList);
-			for(Primate pp : this.primateList){
-				if(pp.getMyGroup()==this.getMyGroup() && pp.getId()!=this.getId()){
-					followMate=pp;
-					break;
-				}
-			}
-		} else {
-			//followMate=chooseSocialPartner();
-		}
+			updateFollowMateFam();
+			//updateFollowMateRandom();
+		} 
 
-		//move based on attraction to food/social partners and repulsion from strangers
+		//choose where to move based on attraction to food/social partners and repulsion from strangers
 		attractionRepulsionRand();
+
 
 	}
 
@@ -130,7 +103,7 @@ public class Baboon extends Primate{
 	public void behaviouralResponse(){
 		if(myPatch!=null){
 			if(myPatch.getResourceLevel()>Parameter.biteSize){
-				myPatch.eatMe(Parameter.biteSize);
+				myPatch.eatMe(Parameter.biteSize,this);
 				feedingCount++;
 			} else {
 				move(myVector,true);
@@ -150,282 +123,41 @@ public class Baboon extends Primate{
 	public void energyUpdate(){
 		//nothing right now: agents are assumed to be always hungry, and will eat when in a patch
 
-		//how did the chosen action affect my sensory inputs
-		level_energy = estimateEnergyIntake();
-		level_safety = estimateSafety(); //circular variation used as measure of safety
-		
-		if(level_energy<0.2 || level_safety>0.8){
-			followMate=null;	
-		}
-	}
+		//update who i'm following
+		myCount++;
+		if(myCount>Parameter.post_delta_T){
+			//how did the chosen action affect my sensory inputs
+			level_energy = estimateEnergyIntake();
+			level_safety = estimateSafety(); //circular variation used as measure of safety
 
-
-	/****************************
-	 * 							*
-	 * 	   Following model	    *
-	 * 							*
-	 * *************************/
-
-	private Primate chooseSocialPartner(){
-
-		Primate followingP = null;
-
-
-
-		return followingP;
-	}
-
-	public void sensoryPrior(){
-
-		//calculate variables of interest (sensory/motor inputs)
-		sensory_energy = this.getEnergy();
-		sensory_safety = this.getSafety();
-		distIdeal = (1-sensory_energy) + (1-sensory_safety);
-		//sensory_energy = level_energy;
-		//sensory_safety = level_safety;
-
-		//need to get a better flow to impliment the motivation (targeted selection of stimuli depending on distance from homoestasis)... 
-		//i've added in the distinction but it is not well done... must be a smarter way...
-		//need to monitor the efficacy of learning... how well are the agents doing? maybe measure total or average distance away from homeostasis? Efficent leanrners would meet all their criteria better than non efficent learners?
-
-		//need to convert the filtered stimulus to only 1 0 not weighted...
-
-		//motivation (targeted sensory attention)
-		/*if(level_energy <= 0){
-			filtered_safety=past_filtered_safety;
-			filtered_energy = 1;
-		} else if (level_safety <0.2){
-			filtered_energy=past_filtered_energy;
-			filtered_safety = 1;
-		} else {
-			filtered_energy=0;
-			filtered_safety=0;
-			//sensory_energy=past_level_energy;
-		}
-		 */
-		//new filtered sensory inputs
-		int [] mot = motivationalFilter(sensory_energy,sensory_safety);
-		filtered_energy = mot[0];
-		filtered_safety = mot[1];
-
-		//double beta = 1 / ( (1-level_energy) + (1-level_safety) );
-		//level_energy = level_energy * beta;
-		//level_safety = level_safety * beta;
-
-		//food_visual = FoodUtils.getVisualFoodSite(this,true); //boolean to return value only
-		//food_memory = FoodUtils.getMemoryFoodSite(this,true); //boolean to return value only
-		//food_water  = FoodUtils.getWaterSite(this,true);      //boolean to return value only
-
-		//add these variables to the input dataset
-		int[] input = {
-				filtered_energy,
-				filtered_safety};/*,
-				currentAction[0],
-				currentAction[1],
-				currentAction[2],
-				currentAction[3],
-				currentAction[4],
-				currentAction[5]};*/
-
-		//input for first layer
-		int id = 0;
-		for(Node n:inputLayer){
-			n.setActive(input[id]);
-			id++;
-		}
-
-		//record prior sensory levels
-		//recordPreActionLevels();
-		past_filtered_safety = filtered_safety;
-		past_filtered_energy = filtered_energy;
-
-	}
-
-	public void actionSelection(){
-		
-		Primate followMate = null;
-		
-		//sum up contributions from each edge
-		int count=0;
-
-		for(Node n:inputLayer){
-			if(this.getIdNumber()==1)System.out.println("IN"+count+": "+n.isActive());
-			count++;
-		}
-
-		count=0;
-		for(Node n:outputLayer){
-			n.sumEdgeWeightsIN();
-			if(this.getIdNumber()==1)System.out.println("L"+count+": "+n.getStrength());
-			count++;
-		}
-
-		double winnerValue = -999999;
-		Node winningNode = null;
-
-		//using winner take all activation
-		for(Node n:outputLayer){
-			if (n.getStrength()>winnerValue){
-				winningNode = n;
-				winnerValue = n.getStrength();
+			if(level_energy<Parameter.energyLowThresh || level_safety>Parameter.safetyLowThresh){
+				followMate=null;	
 			}
+			myCount=0;
 		}
-		if(winningNode == null){
-			System.out.println("wining node is null!");
-			winningNode = outputLayer.get(RandomHelper.nextIntFromTo(0, outputLayer.size()-1));
-		}
-
-		winningNode.setActive(1);
-		action = winningNode.getID();
-		if(this.getIdNumber()==1)System.out.println("action chosen: L"+(action)+" : "+winningNode.getStrength());
-
-		//record past levels (prior to action)
-		past_energy_level = level_energy;
-		past_safety_level = level_safety;
-
-		//perform action
-		followMate = winningNode.getMyPrimate();
-		
 	}
 
 
-
-	public void sensoryPost(){
-		
-		//how did the chosen action affect my sensory inputs
-		level_energy = estimateEnergyIntake();
-		level_safety = estimateSafety(); //circular variation used as measure of safety
-		
-		//adapt behaviour selection mechanism
-		//adjustDecisionWeights();
-		resetActionNetwork();
-	}
-
-	
-	/**********************/
-
-	private int[] motivationalFilter(double energy, double safety){
-		//new filtered inputs: motivation
-		int[] mot = new int[3];
-
-		if(energy <= Parameter.energyLowThresh){
-			mot[1] = 0;
-			mot[0] = 1;
-			mot[2] = 0;
-		} else if (safety <Parameter.safetyLowThresh){
-			mot[1] = 1;
-			mot[0] = 0;
-			mot[2] = 0;
-		} else {
-			mot[0] = 0;
-			mot[1] = 0;
-			mot[2] = 1;
-		}
-
-		return mot;
-	}
-	
-	private int[] motivationalFilterInteraction(double energy, double safety){
-		//new filtered inputs: motivation
-		int[] mot = new int[3];
-		int condMet = 0;
-		
-		mot[1] = 0;
-		mot[0] = 0;
-		mot[2] = 0;
-
-		if(energy <= Parameter.energyLowThresh){
-			mot[0] = 1;
-			condMet=1;
-		}
-		
-		if (safety <Parameter.safetyLowThresh){
-			mot[1] = 1;
-			condMet=1;
-		} 
-		
-		if (condMet==0) {
-			mot[2] = 1;
-		}
-
-		return mot;
-	}
-	
-	private void resetActionNetwork(){
-		for(Node n:this.getAllNodes()){
-			n.setActive(0);
-			n.setStrength(0);
-		} 
-	}
-	
-//	private void adjustDecisionWeights(){
-//
-//		double success = this.getTotalChangeInIdeals(); //learning rate
-//
-//		//adjust edges between output layer and input layer
-//		if(this.getIdNumber()==1){
-//			System.out.println("adjusting weights (yes/no): "+success);
-//		}
-//		
-//		Node actionNode = outputLayer.get(getCurrentAction());
-//
-//		//if start and end node are active increase weight, else decrease weight
-//		if(success==0){
-//			for(Edge e:actionNode.getBackEdges()){
-//				if(e.getStartNode().isActive()==1){
-//					if(this.getIdNumber()==1)System.out.println("down - start: "+e.getWeight());
-//					e.adjustWeightDOWN();
-//					if(this.getIdNumber()==1)System.out.println("down - end: "+e.getWeight());
-//				}
-//			}
-//			
-//			/*for (Edge edge: this.getAllEdges()){
-//				if(edge.getStartNode().isActive()==1 && edge.getEndNode().isActive()==1){
-//					if(this.getIdNumber()==1)System.out.println("up - start: "+edge.getWeight());
-//					edge.adjustWeightUP(change);
-//					if(this.getIdNumber()==1)System.out.println("up - end: "+edge.getWeight());
-//				}
-//			}*/
-//		}else{
-//			for(Edge e:actionNode.getBackEdges()){
-//				if(e.getStartNode().isActive()==1){
-//					if(this.getIdNumber()==1)System.out.println("up - start: "+e.getWeight());
-//					e.adjustWeightUP();
-//					if(this.getIdNumber()==1)System.out.println("up - end: "+e.getWeight());
-//				}
-//			}
-//			
-//			/*for (Edge edge: this.getAllEdges()){
-//				if(edge.getStartNode().isActive()==1 && edge.getEndNode().isActive()==1){
-//					if(this.getIdNumber()==1)System.out.println("Down - start: "+edge.getWeight());
-//					edge.adjustWeightDOWN(change);
-//					if(this.getIdNumber()==1)System.out.println("Down - end: "+edge.getWeight());
-//				}
-//			}*/
-//		}
-//	}
-//	
-	
 	/*********************************************************************************************************/
-	
+
 	private double estimateEnergyIntake(){
-		
+
 		double energy =  (double)feedingCount / (double)Parameter.post_delta_T;
-		
+
 		feedingCount=0;
-		
+
 		return energy;
-		
+
 	}
-	
+
 	private double estimateSafety(){
 		double safe = (double)safetyCount / (double)Parameter.post_delta_T;
-		
+
 		safetyCount=0;
-		
+
 		return safe;
 	}
-	
+
 	public double getMyCV(){
 
 		double cosAngle=0,sinAngle=0;
@@ -434,7 +166,7 @@ public class Baboon extends Primate{
 
 		for (Primate groupMate: ModelSetup.orderedP){
 
-			if(groupMate!=null){
+			if(groupMate!=null && groupMate.getCoord().distance(this.getCoord())<=Parameter.visual_range){
 				double angle = getAngle(this.getCoord(),groupMate.getCoord());
 				cosAngle = cosAngle + Math.cos(angle);
 				sinAngle = sinAngle + Math.sin(angle);
@@ -450,7 +182,7 @@ public class Baboon extends Primate{
 
 		return mR;
 	}
-	
+
 	public static float getAngle(Coordinate s1, Coordinate s2) {
 
 		//get coordinates from simple feature
@@ -468,7 +200,7 @@ public class Baboon extends Primate{
 
 	/****************************
 	 * 							*
-	 * 	   Movement model	    *
+	 * 	   Movement behaviour   *
 	 * 							*
 	 * *************************/
 
@@ -488,7 +220,7 @@ public class Baboon extends Primate{
 
 			//calculate weight
 			double distance = Math.max(Parameter.foodBuffer,  c.getCoord().distance(this.getCoord()));
-			double weight = (c.getResourceLevel()) / distance;  //no effect of     *  c.getFamiliarity(this.getId() 
+			double weight = (c.getResourceLevel()*c.familiarity(this.getId())) / distance;  //no effect of      
 			weights.add(weight);
 			sum = sum + weight;
 
@@ -526,25 +258,28 @@ public class Baboon extends Primate{
 
 		////calculate adjustment for attraction
 		double distToPartner = followMate.getCoord().distance(this.getCoord());
-		double magnitudeAtt = Math.max(Parameter.attractionWeight*(1-(Parameter.attractionDistMax/distToPartner)),0);
-		double angleToP = MoveUtils.getAngle(this.getCoord(), followMate.getCoord(),true);
-		myVector.addToEntry(0, magnitudeAtt*Math.cos(angleToP));
-		myVector.addToEntry(1, magnitudeAtt*Math.sin(angleToP));
-
-		////calculate adjustment for repulsion
-		double magnitudeRep = 0;
-		for(Primate stranger:getStrangers()){
-			double distToStr = stranger.getCoord().distance(this.getCoord());
-			magnitudeRep = Math.max(0, Parameter.repulsionWeight*((1-(distToStr/Parameter.repulsionDistMax))));
-			double angleToS = MoveUtils.getAngle(this.getCoord(), stranger.getCoord(),true);
-			myVector.addToEntry(0, -magnitudeRep*Math.cos(angleToS));
-			myVector.addToEntry(1, -magnitudeRep*Math.sin(angleToS));
+		double magnitudeAtt =0;
+		if(distToPartner>0){
+			magnitudeAtt = Math.max((Parameter.attractionWeight)*(1-(Parameter.attractionDistMax/distToPartner)),0);
+			double angleToP = MoveUtils.getAngle(this.getCoord(), followMate.getCoord(),true);
+			myVector.addToEntry(0, magnitudeAtt*Math.cos(angleToP));
+			myVector.addToEntry(1, magnitudeAtt*Math.sin(angleToP));
 		}
+
+		//		////calculate adjustment for repulsion
+		//		double magnitudeRep = 0;
+		//		for(Primate stranger:getStrangers()){
+		//			double distToStr = stranger.getCoord().distance(this.getCoord());
+		//			magnitudeRep = Math.max(0, Parameter.repulsionWeight*((1-(distToStr/Parameter.repulsionDistMax))));
+		//			double angleToS = MoveUtils.getAngle(this.getCoord(), stranger.getCoord(),true);
+		//			myVector.addToEntry(0, -magnitudeRep*Math.cos(angleToS));
+		//			myVector.addToEntry(1, -magnitudeRep*Math.sin(angleToS));
+		//		}
 
 		//// Choose final vector based on uncertainty around alternative influencing factors
 		double u = Math.atan2(myVector.getEntry(1), myVector.getEntry(0));
 		double length = Math.pow(Math.pow(myVector.getEntry(0),2)+Math.pow(myVector.getEntry(1), 2),0.5);
-		double maxLength = Parameter.bearingWeight + Parameter.foodWeight + magnitudeAtt + magnitudeRep;
+		double maxLength = Parameter.bearingWeight + Parameter.foodWeight + magnitudeAtt ;//+ magnitudeRep;
 		double k = Math.max(-2*Math.log(length/maxLength),0.000001);
 		if(k<=0){
 			System.out.println("zeero u");
@@ -566,20 +301,116 @@ public class Baboon extends Primate{
 
 	/****************************
 	 * 							*
+	 * 	   Following behaviour	*
+	 * 							*
+	 * *************************/
+
+	//update familiarization
+	private void updateFam(){
+
+		for(int i = 0 ; i < Parameter.groupSize ; i++){
+
+			//get distance to primate
+			double fam = 0;
+			if(this.primateList.get(i).getId()!=this.getId()){
+				double dist = this.primateList.get(i).getCoord().distance(this.getCoord());
+				if(dist>1){
+					//fam = 1/(Math.pow(dist,2));
+					fam = 1/dist;
+				} else if (dist<=1){
+					fam = 1;
+				}
+			}
+
+			//add to familiarization score and subtract degradation
+			fam = fam - Parameter.fam_deg + this.primateList_familiarity.get(i);
+			this.primateList_familiarity.set(i, Math.min(1, Math.max(Parameter.minPrimateFamiliarity, fam)));
+		}
+	}
+
+	public void updateFollowMateFam(){
+
+
+		if(Math.random()<Parameter.chooseSelf){
+
+			followMate = this;
+
+		}else{
+
+			//sum all to one
+			double total = 0;
+			for(Double d:this.primateList_familiarity){
+				total = total + d;
+			}
+
+			if(total>0){
+				for(int i = 0 ; i < this.primateList_familiarity.size() ; i++){
+					this.primateList_familiarity.set(i, this.primateList_familiarity.get(i)/total);
+				}
+
+				//choose random value
+				double rand = Math.random();
+
+				//go through list and choose which ever primate first exceeds this number
+				double cumsum = 0;
+				Primate newFollow = null;
+				for(int i = 0 ; i < this.primateList_familiarity.size();i++){
+					cumsum = cumsum + this.primateList_familiarity.get(i);
+					if(cumsum>rand){
+						newFollow = this.primateList.get(i);
+						break;
+					}
+				}
+
+				followMate = newFollow;
+
+				if(newFollow == null){
+					System.out.println("stop here too");
+				}
+			} else {
+				//there is no familiarity (choose a complete random partner)
+				followMate = this.primateList.get((int) Math.round(Math.random()*primateList.size()));
+			}
+		}
+		updateNet();
+	}
+
+	//update who i'm following
+	public void updateFollowMateRandom(){
+
+		Collections.shuffle(this.primateList);
+		for(Primate pp : this.primateList){
+			if(pp.getMyGroup()==this.getMyGroup() && pp.getId()!=this.getId()){
+				followMate=pp;
+				break;
+			}
+		}
+
+		updateNet();
+
+
+	}
+
+	private void updateNet(){
+		try{
+			Network<Baboon> net = ModelSetup.getNetwork();
+			if(this.myEdgeOut!=null)net.removeEdge(this.myEdgeOut);	
+			RepastEdge myR = new RepastEdge(this,(Baboon)followMate,true);
+			net.addEdge(myR);
+			this.myEdgeOut=myR;
+		} catch (NullPointerException ee){
+			System.out.println("null in the net");
+		}
+
+	}
+
+
+	/****************************
+	 * 							*
 	 * 	   Methods				*
 	 * 							*
 	 * *************************/
 
-
-	private ArrayList<Primate> getStrangers(){
-		ArrayList<Primate> strangers = new ArrayList<Primate>();
-		for(Baboon bab : this.primateList){
-			if(this.coordinate.distance(bab.coordinate)<Parameter.repulsionDistMax && bab.myGroup!=this.myGroup){
-				strangers.add(bab);
-			}
-		}
-		return strangers;
-	}
 
 	private ArrayList<Cell> getVisibleFoodPatches(double f){
 
@@ -643,9 +474,7 @@ public class Baboon extends Primate{
 					minDist=dist;
 				}	
 			}
-
 		}
-
 		return myCell;
 	}
 

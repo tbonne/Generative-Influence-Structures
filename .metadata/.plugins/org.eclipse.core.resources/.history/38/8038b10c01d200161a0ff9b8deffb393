@@ -1,0 +1,4 @@
+<context id="LHP" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://repast.org/scenario/context">
+  <projection id="geog" type="geography"/>  
+  <projection id="Social network" type="network"/>  	
+</context>

@@ -19,7 +19,7 @@
 		type="java.lang.Double" defaultValue="10.0" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter" />
 	<parameter name="landscapeWidth" displayName="ENV_landscapeWidth"
-		type="int" defaultValue="500" isReadOnly="false"
+		type="int" defaultValue="1000" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="landscapeHeight" displayName="ENV_landscapeHeight"
 		type="int" defaultValue="1000" isReadOnly="false"
@@ -43,7 +43,7 @@
 		type="int" defaultValue="1" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="groupSize" displayName="ENV_groupSize"
-		type="int" defaultValue="5" isReadOnly="false"
+		type="int" defaultValue="20" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 </parameters>
 

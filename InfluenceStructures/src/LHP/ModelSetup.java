@@ -19,6 +19,7 @@ import com.vividsolutions.jts.geom.Point;
 import repast.simphony.context.Context;
 import repast.simphony.context.space.gis.GeographyFactory;
 import repast.simphony.context.space.gis.GeographyFactoryFinder;
+import repast.simphony.context.space.graph.NetworkBuilder;
 import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ISchedule;
@@ -27,6 +28,7 @@ import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.random.RandomHelper;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.gis.GeographyParameters;
+import repast.simphony.space.graph.Network;
 import tools.SimUtils;
 
 //This file builds the model: creating the environment and populating it with primates
@@ -46,6 +48,7 @@ public class ModelSetup implements ContextBuilder<Object>{
 	public static double timeRecord;
 	public static double timeRecord_start;
 	public static GeodeticCalculator gc;
+	public static Network network;
 
 	public Context<Object> build(Context<Object> context){
 
@@ -74,17 +77,12 @@ public class ModelSetup implements ContextBuilder<Object>{
 
 		/****************************
 		 * 							*
-		 * Building the landscape	*
+		 * Setting up repast S  	*
 		 * 							*
 		 * *************************/
-
+		
 		//Create Geometry factory; used to create gis shapes (points=primates; polygons=resources)
 		GeometryFactory fac = new GeometryFactory();
-
-
-		//x and y dims of the map file
-		int xdim = Parameter.landscapeWidth;
-		int ydim = Parameter.landscapeHeight;
 
 		//Create Geography/GIS 
 		GeographyParameters<Object> params= new GeographyParameters<Object>();
@@ -92,6 +90,19 @@ public class ModelSetup implements ContextBuilder<Object>{
 		geog = factory.createGeography(Parameter.geog, context, params);
 		geog.setCRS("EPSG:32636"); //WGS 84 / UTM zone 36N EPSG:32636
 		gc = new GeodeticCalculator(geog.getCRS());
+
+		//create the network visualization
+		NetworkBuilder <Object> netBuilder = new NetworkBuilder <Object > ("network", context , true); 
+		network = netBuilder.buildNetwork();
+
+		/****************************
+		 * 							*
+		 * Building the landscape	*
+		 * 							*
+		 * *************************/
+		//x and y dims of the map file
+		int xdim = Parameter.landscapeWidth;
+		int ydim = Parameter.landscapeHeight;
 
 		//Add Resources to the environment ****************************************
 		System.out.println("adding resources to the environment");
@@ -121,7 +132,7 @@ public class ModelSetup implements ContextBuilder<Object>{
 
 		//center of group (fixed)
 		double xCenter =xdim/2;
-		double yCenter =0;
+		double yCenter =ydim/2;
 
 		for(int i = 0 ;i<Parameter.numbOfGroups;i++ ){
 
@@ -153,30 +164,10 @@ public class ModelSetup implements ContextBuilder<Object>{
 			p.setPrimateList(new ArrayList(primatesAll));
 		}
 		
-//		for(Primate p:orderedP){
-			//System.out.println("starting with "+p.id);
-//			if(p.getId()==0)p.setBaboonFollower(0);
-//			if(p.getId()==1)p.setBaboonFollower(0);
-//			if(p.getId()==2)p.setBaboonFollower(0);//3
-//			if(p.getId()==3)p.setBaboonFollower(0);
-//			if(p.getId()==4)p.setBaboonFollower(2);
-//			if(p.getId()==5)p.setBaboonFollower(2);
-//			if(p.getId()==6)p.setBaboonFollower(2);
-//			if(p.getId()==7)p.setBaboonFollower(1);
-//			if(p.getId()==8)p.setBaboonFollower(1);//7
-//			if(p.getId()==9)p.setBaboonFollower(1);
-//			if(p.getId()==10)p.setBaboonFollower(3);
-//			if(p.getId()==11)p.setBaboonFollower(3);
-//			if(p.getId()==12)p.setBaboonFollower(3);
-//			//if(p.getId()==13)p.setBaboonFollower(11);
-			
-			//p.setBaboonFollowerRand(p);
-			//p.setBaboonFollowerLeader();
-//		}
-
-//		for(Primate p:this.getAllPrimateAgents()){
-//			System.out.println("I'm "+p.id+ " following " + p.followMate.id);
-//		}
+		//setup initial influence structure
+		for(Baboon p:primatesAll){
+			p.updateFollowMateRandom();
+		}
 
 
 		/************************************
@@ -226,7 +217,7 @@ public class ModelSetup implements ContextBuilder<Object>{
 			ScheduleParameters agentStepParamsPrimateBehaviour = ScheduleParameters.createRepeating(1, 1, 5); //start, interval, priority (high number = higher priority)
 			schedule.schedule(agentStepParamsPrimateBehaviour,executor,"behaviour");
 
-			ScheduleParameters agentStepParamsPrimateEnergy = ScheduleParameters.createRepeating(1, Parameter.post_delta_T, 4); //start, interval, priority (high number = higher priority)
+			ScheduleParameters agentStepParamsPrimateEnergy = ScheduleParameters.createRepeating(1, 1, 4); //start, interval, priority (high number = higher priority)
 			schedule.schedule(agentStepParamsPrimateEnergy,executor,"energyUpdate");
 
 		}
@@ -279,6 +270,9 @@ public class ModelSetup implements ContextBuilder<Object>{
 	}
 	public static GeodeticCalculator getGC(){
 		return gc;
+	}
+	public static Network<Baboon> getNetwork(){
+		return network;
 	}
 
 }
